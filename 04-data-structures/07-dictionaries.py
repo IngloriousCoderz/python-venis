@@ -22,3 +22,11 @@ for key in person:
 
 for key, value in person.items():
     print(key, value)
+
+for index, item in enumerate(['tic', 'tac', 'toe']):
+    print(index, item)
+
+questions = ['name', 'favorite language', 'favorite color']
+answers = ['Matteo Antony', 'JavaScript', 'indigo']
+
+print(dict(zip(questions, answers)))
