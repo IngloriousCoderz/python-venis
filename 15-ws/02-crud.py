@@ -32,6 +32,20 @@ def create_task():
     return new_task, 201
 
 
+@app.put("/tasks/<int:id>")
+def replace_task(id):
+    new_task = request.json
+    new_task['id'] = id
+    try:
+        index = next(index for index, task in enumerate(
+            tasks) if task['id'] == id)
+        tasks[index] = new_task
+        return new_task
+    except StopIteration:
+        app.logger.warning("Task %d not found", id)
+        abort(404)
+
+
 @app.patch("/tasks/<int:id>")
 def update_task(id):
     patch = request.json
